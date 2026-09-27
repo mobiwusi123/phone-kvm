@@ -6,12 +6,12 @@
 - **不装 App**：手机端就是普通网页，扫码即用，可以「添加到主屏幕」当图标点。
 - **不需要管理员权限**：普通用户权限就能注入键鼠（走 `SendInput`）。
 - **零第三方依赖**：WebSocket 服务端和 QR 二维码编码器都是自己写的，只用 Go 标准库；离线也能构建。
-- **单文件交付**：`outputs/phonekvm.exe` 约 6.5 MB，手机端界面已经 `go:embed` 进去，拷过去就能跑。
+- **单文件交付**：仓库一级目录的 `phonekvm.exe` 约 6.5 MB，手机端界面已经 `go:embed` 进去，拷过去就能跑。
 - **仅局域网**：不联网、不做公网穿透。随机密钥藏在网址路径里，没密钥一律 403；只接受私有网段来源。
 
 ## 快速开始
 
-1. 双击 `outputs/phonekvm.exe`。
+1. 双击 `phonekvm.exe`（就在仓库一级目录；在 GitHub 首页点它 → `Download raw file` 即可下载）。
 2. 控制台会直接打印二维码，最多两张：
    - `1/2 *` —— 手机连**同一个 Wi-Fi** 时扫这张；
    - `2/2 +` —— 手机连**电脑自己开的热点**时扫这张。
@@ -74,10 +74,10 @@ phone-kvm/           Go 模块（go.mod + 全部源码 + www/ + build.ps1）
   win_input.go       Win32 注入层：SendInput、绝对定位、增益曲线、Unicode 文字
   selftest.go        -selftest（注入自检）与 -selftest-net（全链路自检）
   www/               手机端界面（index.html / style.css / app.js），go:embed 进 exe
-  build.ps1          构建到 outputs/phonekvm.exe（必须保持纯 ASCII）
+  build.ps1          构建到仓库一级目录的 phonekvm.exe（必须保持纯 ASCII）
   *_test.go          单测：选地址、二维码矩阵与渲染、坐标标定、光标漂移探针
 docs/design.md       设计与实测验收结果（含二维码逐模块比对的方法）
-outputs/phonekvm.exe 交付的单文件程序
+phonekvm.exe         交付的单文件程序，放在仓库一级目录，直接下载
 tools/check_qr.py    用 Python segno 逐模块校验二维码矩阵
 tools/fetch_segno.py 下载 segno（离线开发用；产物 tools/pylibs 不进仓库）
 tools/probes/        早期可行性验证脚本（SendInput 免管理员可用、输入桌面附着等）
@@ -91,7 +91,7 @@ tools/probes/        早期可行性验证脚本（SendInput 免管理员可用�
 powershell -ExecutionPolicy Bypass -File phone-kvm\build.ps1
 ```
 
-产物写到 `outputs\phonekvm.exe`。跑单测：
+产物写到仓库一级目录的 `phonekvm.exe`。跑单测：
 
 ```powershell
 cd phone-kvm

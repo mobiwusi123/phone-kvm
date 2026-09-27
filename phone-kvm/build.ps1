@@ -1,13 +1,13 @@
-# Build script: produces outputs\phonekvm.exe
-# Needs Go 1.21+ only. No network access, stdlib only.
+# Build script: produces phonekvm.exe in the repo root.
+# Needs Go 1.26+ only. No network access, stdlib only.
 # NOTE: keep this file pure ASCII. Windows PowerShell 5.1 reads .ps1 files as ANSI
 # unless they have a UTF-8 BOM, so non-ASCII characters here would break parsing.
+# NOTE: the binary lands in the repo root on purpose, so it is one click away from
+# the GitHub file list and can be attached to a Release as-is.
 $ErrorActionPreference = "Stop"
 $here = $PSScriptRoot
 if (-not $here) { $here = Split-Path -Parent $MyInvocation.MyCommand.Path }
-$outputs = Join-Path (Split-Path -Parent $here) "outputs"
-New-Item -ItemType Directory -Force -Path $outputs | Out-Null
-$exe = Join-Path $outputs "phonekvm.exe"
+$exe = Join-Path (Split-Path -Parent $here) "phonekvm.exe"
 Push-Location $here
 try {
     Write-Host "Building phonekvm.exe ..."

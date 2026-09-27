@@ -4,7 +4,7 @@
 
 ## 怎么用
 
-1. 双击 `outputs\phonekvm.exe`（改了源码后用 `phone-kvm\build.ps1` 重新构建）。
+1. 双击仓库一级目录的 `phonekvm.exe`（改了源码后用 `phone-kvm\build.ps1` 重新构建）。
 2. 控制台会直接打印二维码，最多两张：**手机连同一个 Wi-Fi** 时扫第 1 张（`*` 那条），**手机连电脑热点**时扫第 2 张（`+` 那条），形如 `http://10.253.86.17:8123/<8位密钥>/`。二维码下面还列着所有网卡的网址，扫不了码就手动挑手机能连到的那条。密钥每次启动随机生成，可用 `-token` 固定。
 3. 首次运行 Windows 防火墙会弹一次「是否允许访问网络」，点**允许**。手机上建议用 Chrome 菜单的「添加到主屏幕」，之后一点就进。
 4. 二维码用半块字符（`█▀▄`）画在黑色/白色底上，需要终端窗口够宽（≥ 45 列）、字体含方块字符。程序启动时会把控制台输出码页切成 UTF-8（65001），否则中文和方块字符会变乱码、码也扫不出来。
@@ -83,12 +83,12 @@ phone-kvm/ 就是一个 Go 模块（go.mod + 全部源码 + www/ + build.ps1）�
   cursor_drift_test.go 只观察不注入，用来看光标是不是在被别的东西动
                        （CURSOR_DRIFT_PROBE=1 go test -run TestCursorDriftProbe -v .）
   www/             手机端界面（index.html / style.css / app.js），go:embed 进 exe
-  build.ps1        构建到 outputs\phonekvm.exe（必须保持纯 ASCII）
+  build.ps1        构建到仓库一级目录的 phonekvm.exe（必须保持纯 ASCII）
 ```
 
 ```
 docs/design.md       本文档（设计与验收结果）
-outputs/phonekvm.exe 交付的单文件程序
+phonekvm.exe        交付的单文件程序（仓库一级目录）
 tools/check_qr.py    用 Python segno 逐模块校验二维码矩阵
 tools/fetch_segno.py 联网下载 segno（离线开发用，产物 tools/pylibs 不进仓库）
 tools/probes/        早期可行性验证脚本（SendInput 免管理员可用、输入桌面附着等）

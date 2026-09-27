@@ -4,9 +4,9 @@
 phone-kvm/.gocache/
 phone-kvm/.gotmp/
 
-# 编译产物：仓库里只保留 outputs/phonekvm.exe 这一个交付物
+# 编译产物：仓库一级目录里只保留 phonekvm.exe 这一个交付物
 *.exe
-!outputs/phonekvm.exe
+!/phonekvm.exe
 phone-kvm/phonekvm
 qr_dump.txt
 
