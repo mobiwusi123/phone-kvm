@@ -1,0 +1,7 @@
+# 统一按 LF 存库，避免 Windows 上改一行出现整文件 diff
+* text=auto eol=lf
+
+# 二进制，别碰
+*.exe binary
+*.ico binary
+*.png binary

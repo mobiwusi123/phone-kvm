@@ -1,0 +1,151 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: #12141a;
+  color: #e8eaf0;
+  font: 15px/1.5 system-ui, -apple-system, "Noto Sans SC", sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior: none;
+}
+
+/* ---------------------------------------------------------------- 顶栏 */
+
+#bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  padding-top: calc(10px + env(safe-area-inset-top, 0px));
+  background: #171a21;
+  border-bottom: 1px solid #232733;
+}
+
+#status { flex: 1; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #9aa3b2; min-width: 0; }
+#status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #e5484d; flex: none; }
+#status.on::before { background: #30a46c; }
+#status b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#rtt { color: #6b7688; font-variant-numeric: tabular-nums; flex: none; }
+
+.chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #2c3240;
+  background: #1c2029;
+  color: #cdd5e0;
+  font-size: 14px;
+  touch-action: manipulation;
+}
+
+.chip:active { background: #262c38; }
+.chip.active { background: #3b5bdb; border-color: #4c6ef5; color: #fff; }
+
+/* -------------------------------------------------------------- 触摸板 */
+
+#pad {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  touch-action: none;
+}
+
+#hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #333a49;
+  font-size: 22px;
+  text-align: center;
+  pointer-events: none;
+  padding: 0 24px;
+}
+
+#hint small { color: #2a303d; font-size: 12px; line-height: 1.9; }
+
+#btnCenter {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #2c3240;
+  background: rgba(28, 32, 41, 0.85);
+  color: #9aa3b2;
+  font-size: 13px;
+  touch-action: manipulation;
+}
+
+/* ---------------------------------------------------------------- 键盘 */
+
+#panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: #171a21;
+  border-top: 1px solid #232733;
+}
+
+#panel .row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.key {
+  min-width: 54px;
+  flex: 1 0 auto;
+  padding: 12px 10px;
+  border-radius: 10px;
+  border: 1px solid #2c3240;
+  background: #1c2029;
+  color: #cdd5e0;
+  font-size: 15px;
+  touch-action: manipulation;
+}
+
+.key:active { background: #2a3140; }
+.key.mod.active { background: #3b5bdb; border-color: #4c6ef5; color: #fff; }
+
+#ime {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #2c3240;
+  background: #0f1116;
+  color: #e8eaf0;
+  font-size: 16px;
+}
+
+/* ---------------------------------------------------------------- 设置 */
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: #171a21;
+  border-top: 1px solid #232733;
+}
+
+#settings label { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #9aa3b2; }
+#settings input[type="range"] { flex: 1; min-width: 80px; }
+#settings output { width: 42px; text-align: right; color: #cdd5e0; font-variant-numeric: tabular-nums; }
+
+.wide {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #2c3240;
+  background: #1c2029;
+  color: #cdd5e0;
+  font-size: 15px;
+}
+
+.note { margin: 0; color: #6b7688; font-size: 12px; line-height: 1.7; }
+
+[hidden] { display: none !important; }

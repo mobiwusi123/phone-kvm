@@ -1,0 +1,55 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: phone-kvm/go.mod
+          cache: false
+
+      - name: gofmt
+        working-directory: phone-kvm
+        shell: pwsh
+        run: |
+          $diff = gofmt -l .
+          if ($diff) { Write-Error "gofmt 需要格式化：`n$diff"; exit 1 }
+
+      - name: vet
+        working-directory: phone-kvm
+        run: go vet ./...
+
+      # 只跑不碰真实光标的单测：calib / drift 两个测试会注入并读取真光标，
+      # 需要交互式桌面，跑在 CI 上不稳定，所以明确排除。
+      - name: test
+        working-directory: phone-kvm
+        run: go test -count=1 -run "Test(QRGolden|QRRender|QRAutoMask|IsHotspotName|PickAddrs|DisplayWidth)" ./...
+
+      - name: build
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File phone-kvm/build.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phonekvm
+          path: outputs/phonekvm.exe
+
+      - name: release
+        if: startsWith(github.ref, "refs/tags/")
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create $env:GITHUB_REF_NAME outputs/phonekvm.exe --title $env:GITHUB_REF_NAME --generate-notes
