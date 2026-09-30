@@ -1,0 +1,67 @@
+{
+    "name" : "键鼠APP",
+    "appid" : "__UNI__FB980B9",
+    "description" : "把手机变成电脑的无线键鼠（局域网直连，无需服务器）",
+    "versionName" : "1.0.0",
+    "versionCode" : "100",
+    "transformPx" : false,
+    "app-plus" : {
+        "usingComponents" : true,
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "modules" : {
+            "Camera" : {},
+            "Barcode" : {}
+        },
+        "distribute" : {
+            "android" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_MULTICAST_STATE\"/>"
+                ],
+                "minSdkVersion" : 21,
+                "targetSdkVersion" : 30,
+                "abiFilters" : [ "arm64-v8a", "armeabi-v7a" ]
+            },
+            "ios" : {
+                "dSYMs" : false
+            },
+            "sdkConfigs" : {},
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/logo.png",
+                    "xhdpi" : "static/logo.png",
+                    "xxhdpi" : "static/logo.png",
+                    "xxxhdpi" : "static/logo.png"
+                }
+            }
+        }
+    },
+    "quickapp" : {},
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false,
+            "es6" : true,
+            "minified" : true
+        },
+        "usingComponents" : true
+    },
+    "h5" : {
+        "router" : {
+            "mode" : "hash"
+        }
+    },
+    "vueVersion" : "3"
+}

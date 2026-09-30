@@ -1,0 +1,31 @@
+{
+  "pages": [
+    {
+      "path": "pages/connect/connect",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "连接电脑"
+      }
+    },
+    {
+      "path": "pages/pad/pad",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "键鼠控制",
+        "disableScroll": true,
+        "app-plus": {
+          "bounce": "none",
+          "titleNView": false
+        }
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "键鼠APP",
+    "navigationBarBackgroundColor": "#12141a",
+    "backgroundColor": "#12141a",
+    "backgroundColorTop": "#12141a",
+    "backgroundColorBottom": "#12141a"
+  }
+}

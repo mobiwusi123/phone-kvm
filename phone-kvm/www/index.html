@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="#12141a">
+<meta name="mobile-web-app-capable" content="yes">
+<title>手机虚拟键鼠</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="bar">
+  <span id="status" class="off"><b id="statusText">连接中…</b><i id="rtt"></i></span>
+  <button id="btnKeyboard" class="chip">键盘</button>
+  <button id="btnMore" class="chip">设置</button>
+</header>
+
+<main id="pad">
+  <div id="hint">触摸板<small>单指点 = 左键 ｜ 双指点 = 右键 ｜ 双指滑 = 滚轮 ｜ 双击后不松手 = 拖拽</small></div>
+  <button id="btnCenter">回主屏中央</button>
+</main>
+
+<section id="panel" hidden>
+  <div class="row">
+    <button class="key mod" data-vk="17">Ctrl</button>
+    <button class="key mod" data-vk="18">Alt</button>
+    <button class="key mod" data-vk="16">Shift</button>
+    <button class="key mod" data-vk="91">Win</button>
+    <button class="key" data-vk="27">Esc</button>
+    <button class="key" data-vk="9">Tab</button>
+    <button class="key" data-vk="13">Enter</button>
+    <button class="key" data-vk="8">⌫</button>
+    <button class="key" data-vk="46">Del</button>
+    <button class="key" data-vk="38">↑</button>
+    <button class="key" data-vk="40">↓</button>
+    <button class="key" data-vk="37">←</button>
+    <button class="key" data-vk="39">→</button>
+    <button class="key" data-vk="36">Home</button>
+    <button class="key" data-vk="35">End</button>
+    <button class="key" data-vk="33">PgUp</button>
+    <button class="key" data-vk="34">PgDn</button>
+    <button class="key" data-vk="175">音量+</button>
+    <button class="key" data-vk="174">音量−</button>
+    <button class="key" data-vk="173">静音</button>
+  </div>
+  <input id="ime" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="点这里用手机输入法打字，选完词自动上屏">
+</section>
+
+<section id="settings" hidden>
+  <label>指针灵敏度 <input id="sens" type="range" min="0.4" max="2.5" step="0.05" value="1"><output id="sensVal">1.00</output></label>
+  <label>滚轮速度 <input id="scroll" type="range" min="0.5" max="3" step="0.1" value="1.4"><output id="scrollVal">1.4</output></label>
+  <label><input id="natural" type="checkbox" checked> 反向滚轮（手指上滑 = 页面向下）</label>
+  <label><input id="wake" type="checkbox"> 尝试保持屏幕常亮</label>
+  <button id="btnFull" class="wide">全屏显示</button>
+  <p class="note" id="tips">提示：手机和电脑要在同一个 Wi-Fi 下；本页是 HTTP 页面，浏览器不允许保持常亮，建议把手机「息屏时间」调到 10 分钟。</p>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
